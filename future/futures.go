@@ -1,6 +1,8 @@
 package future
 
 
+
+
 func Ok[T any](x T) chan T {
 	c := make(chan T, 1)
 	c <- x 
