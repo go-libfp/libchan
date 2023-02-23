@@ -4,6 +4,28 @@ import (
 //	"sync"
 )
 
+
+
+
+func Generator[T any](f func() T) chan T {
+        c := make(chan T)
+
+        rec := func() {
+                if r := recover(); r != nil {
+                        return
+                }
+        }
+
+        go func() {
+                defer rec()
+                for {
+                        c <- f()
+                }}()
+
+        return c
+}
+
+
 func Map[T, U any](c chan T, f func(T) U) chan U {
 
 	outCh := make(chan U, cap(c))
