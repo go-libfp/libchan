@@ -1,7 +1,7 @@
 package future
 
 
-func Ok[T any](t T) chan T {
+func Ok[T any](x T) chan T {
 	c := make(chan T, 1)
 	c <- x 
 	return c
@@ -41,10 +41,10 @@ func Bind[T, U any](c chan T, f func(T) chan U) chan U {
 
 
 
-func Map[T, U any](c chan T, f(x T) U)  chan U {
+func Map[T, U any](c chan T, f func(x T) U)  chan U {
 	p := Promise[U]()
 	go func() {
-		x <- c 
+		x := <- c 
 		y := f(x)
 		Resolve(p, y)
 
