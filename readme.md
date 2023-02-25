@@ -1,5 +1,5 @@
 # libchan
-## A utility library that implements different concurrency abstractions on top of channels, ie (futures/promises, streams, mvars, and broadcast channels)
+## Various concurrency abstractions implemented on top of channels. 
 
 
 ### Futures usage 
